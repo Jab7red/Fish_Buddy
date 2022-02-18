@@ -7,6 +7,9 @@
     <title>Fish Buddy</title>
 </head>
 <body>
+    {% extends 'base.html' %}
+    
+    {% block content %}
     <h1>What is Fish Buddy?</h1>
     <hr />
     <p>Fish Buddy is a solution to a problem that myself and my fellow fishing buddies
@@ -15,6 +18,6 @@
         catch, what body of water you caught it at, what gear you used to catch it, and as a little
         plus, the ability to track you catches by length, weight, etc...
     </p>
-    <footer>All Rights Reserved, &copy; 2022 Fish Buddy</footer>
+    {% endblock %}
 </body>
 </html>
