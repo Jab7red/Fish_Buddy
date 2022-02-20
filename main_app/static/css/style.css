@@ -2,6 +2,7 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    background-color: #808080;
   }
   
   main {
@@ -11,4 +12,9 @@ body {
   footer {
     padding-top: 0;
     text-align: right;
+  }
+
+  .index-title {
+    text-decoration: underline;
+    text-align: center;
   }
