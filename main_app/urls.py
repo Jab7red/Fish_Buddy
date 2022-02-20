@@ -7,4 +7,6 @@ urlpatterns = [
     path('fishes/', views.fishes_index, name='fishes_index'),
     path('fishes/<int:fish_id>/', views.fish_detail, name='fish_detail'),
     path('fishes/create/', views.FishCreate.as_view(), name='fishes_create'),
+    path('fishes/<int:pk>/update/', views.FishUpdate.as_view(), name='fishes_update'),
+    path('fishes/<int:pk>/delete/', views.FishDelete.as_view(), name='fishes_delete'),
 ]

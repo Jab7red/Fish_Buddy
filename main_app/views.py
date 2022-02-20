@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Fish
 
 
@@ -36,4 +36,17 @@ def fish_detail(request, fish_id):
 #============
 class FishCreate(CreateView):
     model = Fish
-    fields = '__all__'
+    fields = ('name', 'image')
+
+#============
+# Fish Update
+#============
+class FishUpdate(UpdateView):
+    model = Fish
+    fields = ('name', 'image')
+#============
+# Fish Delete
+#============
+class FishDelete(DeleteView):
+    model = Fish
+    success_url = '/fishes/'
