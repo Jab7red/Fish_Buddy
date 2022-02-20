@@ -11,9 +11,11 @@
             <div class="card-image">
                 <img src="{{ fish.image }}" alt="fish">
             </div>
-            <div style="text-align: center;" class="card-content #2e7d32 green darken-3">
-                <h5>{{ fish.name }}</h5>
-            </div>
+            <a class="fish-link" href="{% url 'fish_detail' fish.id %}">
+                <div style="text-align: center;" class="card-content #2e7d32 green darken-3">
+                    <h5>{{ fish.name }}</h5>
+                </div>
+            </a>
         </div>
     </div>
 </div>
