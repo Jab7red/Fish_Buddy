@@ -1,6 +1,14 @@
 from django.db import models
 from django.urls import reverse
 
+
+LAKES = (
+    ('Pines', 'Lake O The Pines'),
+    ('Caddo', 'Caddo Lake'),
+    ('Lone Star', 'Lake Lone Star'),
+    ('Sandlin', 'Lake Bob Sandlin')
+)
+
 # Create your models here.
 class Fish(models.Model):
     name = models.CharField(max_length=100)
@@ -24,3 +32,18 @@ class Gear(models.Model):
 
     def get_absolute_url(self):
         return reverse('gear_detail', kwargs={'gear_id': self.id})
+
+
+
+
+class Lake(models.Model):
+    name = models.CharField(
+        max_length=100,
+        choices=LAKES,
+        default=LAKES[0][0]
+    )
+
+    fish = models.ForeignKey(Fish, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.get_name_display()}"

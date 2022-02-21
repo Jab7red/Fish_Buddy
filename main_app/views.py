@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Fish, Gear
+from .forms import LakeForm
 
 
 # Create your views here.
@@ -29,7 +30,19 @@ def fishes_index(request):
 #============
 def fish_detail(request, fish_id):
     fish = Fish.objects.get(id=fish_id)
-    return render(request, 'fishes/detail.html', { 'fish': fish })
+    lake_form = LakeForm()
+    return render(request, 'fishes/detail.html', { 'fish': fish, 'lake_form': lake_form })
+
+#=========
+# Add Lake
+#=========
+def add_lake(request, fish_id):
+    form = LakeForm(request.POST)
+    if form.is_valid():
+        new_lake = form.save(commit=False)
+        new_lake.fish_id = fish_id
+        new_lake.save()
+    return redirect('fish_detail', fish_id=fish_id)
 
 #============
 # Fish Create
