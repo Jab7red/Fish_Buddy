@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Fish
+from .models import Fish, Gear
 
 
 # Create your views here.
@@ -44,9 +44,45 @@ class FishCreate(CreateView):
 class FishUpdate(UpdateView):
     model = Fish
     fields = ('name', 'image')
+
 #============
 # Fish Delete
 #============
 class FishDelete(DeleteView):
     model = Fish
     success_url = '/fishes/'
+
+#===========
+# Gear Index
+#===========
+def gears_index(request):
+    gears = Gear.objects.all()
+    return render(request, 'gears/index.html', { 'gears': gears})
+
+#============
+# Gear Detail
+#============
+def gear_detail(request, gear_id):
+    gear = Gear.objects.get(id=gear_id)
+    return render(request, 'gears/detail.html', { 'gear': gear })
+
+#============
+# Gear Create
+#============
+class GearCreate(CreateView):
+    model = Gear
+    fields = ('name', 'color')
+
+#============
+# Gear Update
+#============
+class GearUpdate(UpdateView):
+    model = Gear
+    fields = ('name', 'color')
+
+#============
+# Gear Delete
+#============
+class GearDelete(DeleteView):
+    model = Gear
+    success_url = '/gears/'

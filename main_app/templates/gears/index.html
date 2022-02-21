@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="index-title">My Gear</h1>
+<hr />
+
+{% for gear in gears %}
+<div style="width: 250px;" class="card #2e7d32 green darken-3">
+    <a href="{% url 'gear_detail' gear.id %}">
+        <div style="color: black;" class="card-content">
+            <span class="card-title">{{ gear.name }}</span>
+            <p>color: {{ gear.color }}</p>
+        </div>
+    </a>
+</div>
+{% endfor %}
+
+
+{% endblock %}

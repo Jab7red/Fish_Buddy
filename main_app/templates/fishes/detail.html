@@ -10,9 +10,9 @@
             <div class="card-image">
                 <img src="{{ fish.image }}" alt="fish">
             </div>
-            <div class="card-content card_action #2e7d32 green darken-3">
-                <a style="color: white;" class="left" href="{% url 'fishes_update' fish.id %}">Edit</a>
-                <a style="color: white;" class="right" href="{% url 'fishes_delete' fish.id %}">Delete</a>
+            <div class="card-content card-action #2e7d32 green darken-3">
+                <a style="color: white;" href="{% url 'fishes_update' fish.id %}">Edit</a>
+                <a style="color: white;" href="{% url 'fishes_delete' fish.id %}">Delete</a>
             </div>
         </div>
     </div>

@@ -11,3 +11,16 @@ class Fish(models.Model):
 
     def get_absolute_url(self):
         return reverse('fish_detail', kwargs={'fish_id': self.id})
+
+
+
+
+class Gear(models.Model):
+    name = models.CharField(max_length=100)
+    color = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('gear_detail', kwargs={'gear_id': self.id})
