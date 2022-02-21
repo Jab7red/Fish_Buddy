@@ -8,7 +8,7 @@
     <div class="col s12 m6">
         <div class="card">
             <div class="card-image">
-                <img src="{{ fish.image }}" alt="fish">
+                <img class="responsive-img" src="{{ fish.image }}" alt="fish">
             </div>
             <div class="card-content card-action #2e7d32 green darken-3">
                 <a style="color: white;" href="{% url 'fishes_update' fish.id %}">Edit</a>
@@ -25,7 +25,7 @@
         <table class="striped centered">
             <thead>
                 <tr>
-                    <th style="text-align: center; text-decoration: underline;">Lakes Caught</th>
+                    <th style="text-align: center; text-decoration: underline;"><h5>Lakes Caught</h5></th>
                 </tr>
             </thead>
             <tbody>
