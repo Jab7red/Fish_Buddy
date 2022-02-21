@@ -5,27 +5,30 @@ body {
     background-color: #e8f5e9;
   }
   
-  main {
+main {
     flex: 1 0 auto;
-  }
+}
   
-  footer {
+footer {
     padding-top: 0;
     text-align: right;
-  }
+}
 
-  .index-title {
+.index-title {
     text-decoration: underline;
     text-align: center;
-  }
+}
 
-  .detail-title {
+.detail-title {
     text-align: center;
-  }
+}
 
-  .fish-link {
+.fish-link {
     color: black;
-  }
+}
+
+
+
 
 
 
