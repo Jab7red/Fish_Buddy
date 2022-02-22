@@ -25,13 +25,10 @@
                 <ul class="left">
                     <li><a href="{% url 'about' %}">About</a></li>
                 </ul>
-                <!-- <ul class="right">
-                    <li><a href="{% url 'fishes_create' %}">Add Species</a></li>
-                    <li><a href="{% url 'fishes_index' %}">My Fish</a></li>
-                </ul> -->
                 <a style="margin-right: 15px;" class='dropdown-trigger right' href='#' data-target='dropdown1'>Actions &#9660;</a>
 
                 <!-- Dropdown Structure -->
+                {% if user.is_authenticated %}
                 <ul id='dropdown1' class='dropdown-content'>
                     <li><a style="color: black;" href="{% url 'fishes_index' %}">My Fish</a></li>
                     <li><a style="color: black;" href="{% url 'gears_index' %}">My Gear</a></li>
@@ -39,6 +36,15 @@
                     <li><a style="color: black;" href="{% url 'fishes_create' %}">Add Species</a></li>
                     <li><a style="color: black;" href="{% url 'gears_create' %}">Add Gear</a></li>
                 </ul>
+                <ul class="right">
+                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                </ul>
+                {% else %}
+                <ul class="right">
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                    <li><a href="{% url 'login' %}">Log In</a></li>
+                </ul>
+                {% endif %}
             </div>
         </nav>
     </header>

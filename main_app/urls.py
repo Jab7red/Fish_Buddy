@@ -17,4 +17,5 @@ urlpatterns = [
     path('fishes/<int:fish_id>/add_lake/', views.add_lake, name='add_lake'),
     path('fishes/<int:fish_id>/assoc_gear/<int:gear_id>/', views.assoc_gear, name='assoc_gear'),
     path('fishes/<int:fish_id>/add_log/', views.add_log, name='add_log'),
+    path('accounts/signup/', views.signup, name='signup'),
 ]
