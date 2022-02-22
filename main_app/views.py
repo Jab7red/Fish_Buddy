@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Fish, Gear
-from .forms import LakeForm
+from .models import Fish, Gear, Log
+from .forms import LakeForm, LogForm
 
 
 # Create your views here.
@@ -32,7 +32,13 @@ def fish_detail(request, fish_id):
     fish = Fish.objects.get(id=fish_id)
     gears_fish_doesnt_have = Gear.objects.exclude(id__in = fish.gears.all().values_list('id'))
     lake_form = LakeForm()
-    return render(request, 'fishes/detail.html', { 'fish': fish, 'lake_form': lake_form, 'gears': gears_fish_doesnt_have })
+    log_form = LogForm()
+    return render(request, 'fishes/detail.html', { 
+        'fish': fish, 
+        'lake_form': lake_form, 
+        'gears': gears_fish_doesnt_have,
+        'log_form': log_form 
+    })
 
 #=========
 # Add Lake
@@ -43,6 +49,17 @@ def add_lake(request, fish_id):
         new_lake = form.save(commit=False)
         new_lake.fish_id = fish_id
         new_lake.save()
+    return redirect('fish_detail', fish_id=fish_id)
+
+#========
+# Add Log
+#========
+def add_log(request, fish_id):
+    form = LogForm(request.POST)
+    if form.is_valid():
+        new_log = form.save(commit=False)
+        new_log.fish_id = fish_id
+        new_log.save()
     return redirect('fish_detail', fish_id=fish_id)
 
 #==============

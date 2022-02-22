@@ -8,6 +8,12 @@ LAKES = (
     ('Lone Star', 'Lake Lone Star'),
     ('Sandlin', 'Lake Bob Sandlin')
 )
+LOGS = (
+    ('Pines', 'Lake O The Pines'),
+    ('Caddo', 'Caddo Lake'),
+    ('Lone Star', 'Lake Lone Star'),
+    ('Sandlin', 'Lake Bob Sandlin')
+)
 
 # Create your models here.
 class Gear(models.Model):
@@ -46,3 +52,23 @@ class Lake(models.Model):
 
     def __str__(self):
         return f"{self.get_name_display()}"
+
+
+
+class Log(models.Model):
+    date = models.DateField()
+    location = models.CharField(
+        max_length=100,
+        choices=LOGS,
+        default=LOGS[0][0]
+    )
+    length = models.IntegerField()
+    weight = models.FloatField()
+
+    fish = models.ForeignKey(Fish, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.date} at {self.get_location_display()} was {self.length} and {self.weight}"
+
+    class Meta:
+        ordering = ['-date']

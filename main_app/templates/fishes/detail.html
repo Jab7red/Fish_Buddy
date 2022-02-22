@@ -39,7 +39,7 @@
     </div>
 </div>
 </div>
-<h2>Gear Used</h2>
+<h3>Gear Used</h3>
 <hr />
 <div class="row">
     <div class="col s6">
@@ -81,10 +81,49 @@
         {% endif %}
     </div>
 </div>
+<h3>Catch Log</h3>
+<hr />
+<div class="col s6">
+    <form action="{% url 'add_log' fish.id %}" method="POST">
+        {% csrf_token %}
+        {{ log_form.as_p }}
+        <input type="submit" class="btn #2e7d32 green darken-3" value="Log Catch">
+    </form>
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Lake Caught</th>
+          <th>Length (in.)</th>
+          <th>Weight (lbs)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for log in fish.log_set.all %}
+        <tr>
+          <td>{{log.date}}</td>
+          <td>{{log.get_location_display}}</td>
+          <td>{{log.length}} in</td>
+          <td>{{log.weight}} lbs</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 
 <script>
-    var selectEl = document.getElementById('id_name');
-    M.FormSelect.init(selectEl);
+    var dateEl = document.getElementById('id_date');
+  M.Datepicker.init(dateEl, {
+    format: 'yyyy-mm-dd',
+    defaultDate: new Date(),
+    setDefaultDate: true,
+    autoClose: true
+  });
+    var selectLake = document.getElementById('id_name');
+    M.FormSelect.init(selectLake);
+    var selectLogLake = document.getElementById('id_location');
+    M.FormSelect.init(selectLogLake);
 </script>
 
 {% endblock %}
