@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Fish, Gear, Log
 from .forms import LakeForm, LogForm
 
@@ -40,13 +42,15 @@ def signup(request):
 #===========
 # Fish Index
 #===========
+@login_required
 def fishes_index(request):
-    fishes = Fish.objects.all()
+    fishes = Fish.objects.filter(user=request.user)
     return render(request, 'fishes/index.html', { 'fishes': fishes })
 
 #============
 # Fish Detail
 #============
+@login_required
 def fish_detail(request, fish_id):
     fish = Fish.objects.get(id=fish_id)
     gears_fish_doesnt_have = Gear.objects.exclude(id__in = fish.gears.all().values_list('id'))
@@ -62,6 +66,7 @@ def fish_detail(request, fish_id):
 #=========
 # Add Lake
 #=========
+@login_required
 def add_lake(request, fish_id):
     form = LakeForm(request.POST)
     if form.is_valid():
@@ -73,6 +78,7 @@ def add_lake(request, fish_id):
 #========
 # Add Log
 #========
+@login_required
 def add_log(request, fish_id):
     form = LogForm(request.POST)
     if form.is_valid():
@@ -84,6 +90,7 @@ def add_log(request, fish_id):
 #==============
 # Assocociation
 #==============
+@login_required
 def assoc_gear(request, fish_id, gear_id):
     Fish.objects.get(id=fish_id).gears.add(gear_id)
     return redirect('fish_detail', fish_id=fish_id)
@@ -91,7 +98,7 @@ def assoc_gear(request, fish_id, gear_id):
 #============
 # Fish Create
 #============
-class FishCreate(CreateView):
+class FishCreate(LoginRequiredMixin, CreateView):
     model = Fish
     fields = ('name', 'image')
 
@@ -102,20 +109,21 @@ class FishCreate(CreateView):
 #============
 # Fish Update
 #============
-class FishUpdate(UpdateView):
+class FishUpdate(LoginRequiredMixin, UpdateView):
     model = Fish
     fields = ('name', 'image')
 
 #============
 # Fish Delete
 #============
-class FishDelete(DeleteView):
+class FishDelete(LoginRequiredMixin, DeleteView):
     model = Fish
     success_url = '/fishes/'
 
 #===========
 # Gear Index
 #===========
+@login_required
 def gears_index(request):
     gears = Gear.objects.all()
     return render(request, 'gears/index.html', { 'gears': gears})
@@ -123,6 +131,7 @@ def gears_index(request):
 #============
 # Gear Detail
 #============
+@login_required
 def gear_detail(request, gear_id):
     gear = Gear.objects.get(id=gear_id)
     return render(request, 'gears/detail.html', { 'gear': gear })
@@ -130,20 +139,20 @@ def gear_detail(request, gear_id):
 #============
 # Gear Create
 #============
-class GearCreate(CreateView):
+class GearCreate(LoginRequiredMixin, CreateView):
     model = Gear
     fields = ('name', 'color')
 
 #============
 # Gear Update
 #============
-class GearUpdate(UpdateView):
+class GearUpdate(LoginRequiredMixin, UpdateView):
     model = Gear
     fields = ('name', 'color')
 
 #============
 # Gear Delete
 #============
-class GearDelete(DeleteView):
+class GearDelete(LoginRequiredMixin, DeleteView):
     model = Gear
     success_url = '/gears/'
