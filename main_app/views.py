@@ -125,7 +125,7 @@ class FishDelete(LoginRequiredMixin, DeleteView):
 #===========
 @login_required
 def gears_index(request):
-    gears = Gear.objects.all()
+    gears = Gear.objects.filter(user=request.user)
     return render(request, 'gears/index.html', { 'gears': gears})
 
 #============

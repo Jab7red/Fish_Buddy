@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fish Buddy</title>
 </head>
+
 <body>
     {% extends 'base.html' %}
-    
+
     {% block content %}
-    <h1>Hello World</h1>
-    
+    <h1 style="text-align: center;">Welcome to Fish Buddy!</h1>
+    <h5 style="text-align: center;">A solution to everyone's problem</h5>
+    <hr />
+    <h3 style="text-align: center;">Fisherman's Spotlight</h3>
+    <div class="img-div">
+        <img id="spotlight" src="https://i.imgur.com/mB4T2jY.jpg" alt="Catch of the Month">
+    </div>
+    <div style="text-align: center;">
+        <h6>Angler: Jared Bradley</h6>
+        <h6>Lake: Lake O' The Pines</h6>
+        <h6>Gear: Chartreuse Crankbait</h6>
+    </div>
+
     {% endblock %}
 </body>
+
 </html>

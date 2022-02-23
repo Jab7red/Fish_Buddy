@@ -27,6 +27,17 @@ footer {
     color: black;
 }
 
+.img-div {
+    display: flex;
+    justify-content: center;
+}
+
+#spotlight {
+    border: 2px solid #2e7d32;
+    height: 300px;
+    width: 250px;
+}
+
 
 
 

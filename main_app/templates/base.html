@@ -25,7 +25,8 @@
                 <ul class="left">
                     <li><a href="{% url 'about' %}">About</a></li>
                 </ul>
-                <a style="margin-right: 15px;" class='dropdown-trigger right' href='#' data-target='dropdown1'>Actions &#9660;</a>
+                <a style="margin-right: 15px;" class='dropdown-trigger right' href='#' data-target='dropdown1'>Actions
+                    &#9660;</a>
 
                 <!-- Dropdown Structure -->
                 {% if user.is_authenticated %}
@@ -37,6 +38,7 @@
                     <li><a style="color: black;" href="{% url 'gears_create' %}">Add Gear</a></li>
                 </ul>
                 <ul class="right">
+                    <li>Welcome, {{ user.username }}!</li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                 </ul>
                 {% else %}
